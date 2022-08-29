@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "trab1-grafos": {
+      "commandName": "Project",
+      "commandLineArgs": "test.txt\r\n100"
+    }
+  }
+}
