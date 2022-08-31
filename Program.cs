@@ -4,8 +4,14 @@ using trab1_grafos.Models;
 
 namespace trab1_grafos {
 	class Program {
-		private static String projectPath = "C:\\Users\\vinif\\source\\repos\\trab1-grafos\\";
+		private static String projectPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
 		static void Main(string[] args) {
+
+			if (args.Length != 2) {
+				Console.WriteLine("You need to specify two arguments. (1) Test file name, " +
+								  "(2) What vertice do you want to analyse");
+			}
+
 			Vertice v = new Vertice();
 
 			v.Id = int.Parse(args[1]);
@@ -26,10 +32,13 @@ namespace trab1_grafos {
 		}
 
 		private static List<Aresta> lerArquivo(String path) {
+
 			StreamReader sr = new StreamReader(Path.Combine(projectPath, path));
 			List<Aresta> lista = new List<Aresta>();
-			sr.ReadLine();
+
 			Regex rx = new Regex(@" +");
+
+			sr.ReadLine();
 			while (sr.Peek() != -1) {
 				String line = sr.ReadLine().Trim();
 				String[] arestaLine = Regex.Replace(line, @" +", " ").Split(" ");
